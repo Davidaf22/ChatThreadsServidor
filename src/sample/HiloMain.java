@@ -28,15 +28,20 @@ public class HiloMain extends Thread {
 
         ClaseMensaje nuevoMensaje = new ClaseMensaje();
         ObjectInputStream ois = null;
+        boolean varBool=false;
+        while(!varBool) {
 
-        try {
-            ois = new ObjectInputStream (socket.getInputStream ());
-            nuevoMensaje = (ClaseMensaje) ois.readObject();
+            try {
+                ois = new ObjectInputStream(socket.getInputStream());
+                nuevoMensaje = (ClaseMensaje) ois.readObject();
 
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            if (nuevoMensaje.getMensaje().equals("/bye")){
+                varBool=true;
+            }
+            System.out.println(nuevoMensaje.getNickname() + " : " + nuevoMensaje.getMensaje());
         }
-
-        System.out.println(nuevoMensaje.getNickname()+" : "+nuevoMensaje.getMensaje());
     }
 }
