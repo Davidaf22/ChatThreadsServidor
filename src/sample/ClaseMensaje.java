@@ -1,6 +1,8 @@
 package sample;
 
-public class ClaseMensaje {
+import java.io.Serializable;
+
+public class ClaseMensaje implements Serializable {
 
     public String nickname;
     public String mensaje;

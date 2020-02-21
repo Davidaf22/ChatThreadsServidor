@@ -30,8 +30,7 @@ public class HiloMain extends Thread {
         ObjectInputStream ois = null;
 
         try {
-
-            ois = (ObjectInputStream) socket.getInputStream();
+            ois = new ObjectInputStream (socket.getInputStream ());
             nuevoMensaje = (ClaseMensaje) ois.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
